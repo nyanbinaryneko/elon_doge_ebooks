@@ -51,8 +51,8 @@ class MarkovChainer(object):
 
     def generate_sentence(self):
         res = random.choice(self.beginnings)
+        print(self.beginnings)
         res = res[:]
-        print(len(res))
         if len(res) == self.order:
             nw = True
             while nw is not None:
