@@ -32,5 +32,5 @@ WEB_ATTRIBUTES = [{'class': 'example-text'}, {}] # A list of dictionaries contai
 ODDS = 8  # How often do you want this to run? 1/8 times?
 ORDER = 3  # How closely do you want this to hew to sensical? 2 is low and 4 is high.
 
-DEBUG = True  # Set this to False to start Tweeting live
+DEBUG = False  # Set this to False to start Tweeting live
 TWEET_ACCOUNT = "barklonhusk"  # The name of the account you're tweeting to.
