@@ -92,17 +92,17 @@ class MarkovChainer(object):
         barklon = Barklon()
         println(word.lower())
         updated_word = {
-             elon.TESLA : barklon.FURSLA,
-             elon.SPACE_X : barklon.DOGE_X,
-             elon.HYPERLOOP : barklon.HYPERSCOOP,
-             elon.MARS : barklon.MOON,
-             elon.DRAGON : barklon.DARGON,
-             elon.FALCON : barklon.FALKOR,
-             elon.ELON : barklon.BARKLON,
-             elon.MUSK : barklon.HUSK,
-             elon.PAYPAL : barklon.PAYPAW
-         }.get(word.lower(), word)
-         print(updated_word)
+            elon.TESLA : barklon.FURSLA,
+            elon.SPACE_X : barklon.DOGE_X,
+            elon.HYPERLOOP : barklon.HYPERSCOOP,
+            elon.MARS : barklon.MOON,
+            elon.DRAGON : barklon.DARGON,
+            elon.FALCON : barklon.FALKOR,
+            elon.ELON : barklon.BARKLON,
+            elon.MUSK : barklon.HUSK,
+            elon.PAYPAL : barklon.PAYPAW
+        }.get(word.lower(), word)
+        print(updated_word)
         return updated_word
 
 
