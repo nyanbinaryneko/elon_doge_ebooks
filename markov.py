@@ -49,9 +49,9 @@ class MarkovChainer(object):
     # Generate the goofy sentences that become your tweet.
     # edited to replace elon companies with doge equivalents
 
-    # Generate the goofy sentences that become your tweet.
     def generate_sentence(self):
         res = random.choice(self.beginnings)
+        print(random.choice(self.beginnings))
         res = res[:]
         if len(res) == self.order:
             nw = True
@@ -72,6 +72,7 @@ class MarkovChainer(object):
                 new_res[0] = new_res[0].capitalize()
             sentence = ""
             for word in new_res:
+                self.barklonifier(word)
                 sentence += word + " "
             sentence += res[-2] + ("" if res[-1] in ".!?;:" else " ") + res[-1]
 
