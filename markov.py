@@ -90,7 +90,7 @@ class MarkovChainer(object):
     def barklonifier(self, word):
         elon = Elon()
         barklon = Barklon()
-        println(word.lower())
+        print(word.lower())
         updated_word = {
             elon.TESLA : barklon.FURSLA,
             elon.SPACE_X : barklon.DOGE_X,
