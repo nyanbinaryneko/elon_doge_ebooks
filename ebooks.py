@@ -203,12 +203,6 @@ if __name__ == "__main__":
         for x in range(0, 10):
             ebook_status = mine.generate_sentence()
 
-        # randomly drop the last word, as Horse_ebooks appears to do.
-        if random.randint(0, 4) == 0 and re.search(r'(in|to|from|for|with|by|our|of|your|around|under|beyond)\s\w+$', ebook_status) is not None:
-            print("Losing last word randomly")
-            ebook_status = re.sub(r'\s\w+.$', '', ebook_status)
-            print(ebook_status)
-
         # if a tweet is very short, this will randomly add a second sentence to it.
         if ebook_status is not None and len(ebook_status) < 50:
             rando = random.randint(0, 10)
