@@ -71,7 +71,7 @@ class MarkovChainer(object):
                 new_res[0] = new_res[0].capitalize()
             sentence = ""
             for word in new_res:
-                self.barklonifier(word)
+                word = self.barklonifier(word)
                 sentence += word + " "
             sentence += res[-2] + ("" if res[-1] in ".!?;:" else " ") + res[-1]
 
