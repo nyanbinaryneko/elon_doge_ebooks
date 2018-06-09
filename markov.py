@@ -106,7 +106,7 @@ class MarkovChainer(object):
             "paypal's" : "PayPaw's",
             "tesla-solarcity" : "Fursla DogePark"
         }.get(word.lower(), word)
-        print(updated_word)
+        #print(updated_word)
         return updated_word
 
 
