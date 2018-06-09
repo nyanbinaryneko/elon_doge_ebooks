@@ -29,7 +29,7 @@ SRC_URL = ['http://www.example.com/one', 'https://www.example.com/two']  # A com
 WEB_CONTEXT = ['span', 'h2']  # A comma-separated list of the tag or object to search for in each page above.
 WEB_ATTRIBUTES = [{'class': 'example-text'}, {}] # A list of dictionaries containing the attributes for each page.
 
-ODDS = 8  # How often do you want this to run? 1/8 times?
+ODDS = 1  # How often do you want this to run? 1/8 times?
 ORDER = 3  # How closely do you want this to hew to sensical? 2 is low and 4 is high.
 
 DEBUG = False  # Set this to False to start Tweeting live
