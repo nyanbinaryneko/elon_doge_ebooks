@@ -4,6 +4,7 @@ import sys
 import twitter
 from mastodon import Mastodon
 import markov
+import doge
 from bs4 import BeautifulSoup
 try:
     # Python 3
@@ -209,7 +210,7 @@ if __name__ == "__main__":
             print(ebook_status)
 
         # if a tweet is very short, this will randomly add a second sentence to it.
-        if ebook_status is not None and len(ebook_status) < 40:
+        if ebook_status is not None and len(ebook_status) < 100:
             rando = random.randint(0, 10)
             if rando == 0 or rando == 7:
                 print("Short tweet. Adding another sentence randomly")

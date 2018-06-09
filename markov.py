@@ -1,6 +1,6 @@
 import random
 import re
-from doge_enums import *
+from doge import *
 
 
 class MarkovChainer(object):
