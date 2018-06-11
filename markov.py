@@ -105,10 +105,13 @@ class MarkovChainer(object):
             "tesla's" : "Fursla's",
             "spacex's" : "DogeX's",
             "paypal's" : "PayPaw's",
-            "tesla-solarcity" : "Fursla DogePark",
+            "tesla-solarcity" : "Fursla DogePark"
         }.get(word.lower(), word)
         #print(updated_word)
         return updated_word
+    
+    #def generate_time(self, words):
+
 
 
 
