@@ -100,11 +100,12 @@ class MarkovChainer(object):
             elon.ELON : barklon.BARKLON,
             elon.MUSK : barklon.HUSK,
             elon.PAYPAL : barklon.PAYPAW,
+            elon.SPACE : barklon.SHPESS,
             "teslas" : "Furslas",
             "tesla's" : "Fursla's",
-            "SpaceX's" : "DogeX's",
+            "spacex's" : "DogeX's",
             "paypal's" : "PayPaw's",
-            "tesla-solarcity" : "Fursla DogePark"
+            "tesla-solarcity" : "Fursla DogePark",
         }.get(word.lower(), word)
         #print(updated_word)
         return updated_word

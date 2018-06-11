@@ -9,6 +9,7 @@ class Elon:
     ELON = "elon"
     MUSK = "musk"
     PAYPAL = "paypal"
+    SPACE = "space"
 
 class Barklon:
     FURSLA = "Fursla"
@@ -21,6 +22,7 @@ class Barklon:
     BARKLON = "Barklon"
     HUSK = "Husk"
     PAYPAW = "PayPaw"
+    SHPESS = "shpess"
 
 
 class Doge:
