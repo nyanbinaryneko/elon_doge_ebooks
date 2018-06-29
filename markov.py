@@ -115,6 +115,5 @@ class MarkovChainer(object):
 
 
 
-
 if __name__ == "__main__":
     print("Try running ebooks.py first")
