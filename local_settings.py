@@ -2,13 +2,24 @@
 Local Settings for a heroku_ebooks account. 
 '''
 import os
+from dotenv import load_dotenv, find_dotenv
 # Configuration for Twitter API
+is_production = os.environ.get('IS_HEROKU', None)
 ENABLE_TWITTER_SOURCES = True # Fetch twitter statuses as source
 ENABLE_TWITTER_POSTING = True # Tweet resulting status?
-MY_CONSUMER_KEY = os.environ['MY_CONSUMER_KEY']
-MY_CONSUMER_SECRET = os.environ['MY_CONSUMER_SECRET']
-MY_ACCESS_TOKEN_KEY = os.environ['MY_ACCESS_TOKEN_KEY']
-MY_ACCESS_TOKEN_SECRET = os.environ['MY_ACCESS_TOKEN_SECRET']
+if is_production:
+    MY_CONSUMER_KEY = os.environ['MY_CONSUMER_KEY']
+    MY_CONSUMER_SECRET = os.environ['MY_CONSUMER_SECRET']
+    MY_ACCESS_TOKEN_KEY = os.environ['MY_ACCESS_TOKEN_KEY']
+    MY_ACCESS_TOKEN_SECRET = os.environ['MY_ACCESS_TOKEN_SECRET']
+    TWEET_ACCOUNT = os.environ['HANDLE']
+else:
+    load_dotenv(find_dotenv())
+    MY_CONSUMER_KEY = os.getenv('MY_CONSUMER_KEY')
+    MY_CONSUMER_SECRET = os.getenv('MY_CONSUMER_SECRET')
+    MY_ACCESS_TOKEN_KEY = os.getenv('MY_ACCESS_TOKEN_KEY')
+    MY_ACCESS_TOKEN_SECRET = os.getenv('MY_ACCESS_TOKEN_SECRET')
+    TWEET_ACCOUNT = os.getenv('HANDLE')
 
 # Configuration for Mastodon API
 ENABLE_MASTODON_SOURCES = False # Fetch mastodon statuses as a source?
@@ -30,7 +41,7 @@ WEB_CONTEXT = ['span', 'h2']  # A comma-separated list of the tag or object to s
 WEB_ATTRIBUTES = [{'class': 'example-text'}, {}] # A list of dictionaries containing the attributes for each page.
 
 ODDS = 1  # How often do you want this to run? 1/8 times?
-ORDER = 2  # How closely do you want this to hew to sensical? 2 is low and 4 is high.
+ORDER = 3  # How closely do you want this to hew to sensical? 2 is low and 4 is high.
 
-DEBUG = False  # Set this to False to start Tweeting live
-TWEET_ACCOUNT = os.environ['HANDLE']  # The name of the account you're tweeting to.
+DEBUG = True  # Set this to False to start Tweeting live
+  # The name of the account you're tweeting to.
