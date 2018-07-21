@@ -104,7 +104,7 @@ def scrape_page(src_url, web_context, web_attributes):
 
 def grab_tweets(api, max_id=None):
     source_tweets = []
-    user_tweets = api.GetUserTimeline(screen_name=user, count=200, max_id=max_id, include_rts=True, trim_user=True, exclude_replies=True)
+    user_tweets = api.GetUserTimeline(screen_name=user, count=1000, max_id=max_id, include_rts=True, trim_user=True, exclude_replies=True)
     if user_tweets:
         max_id = user_tweets[-1].id - 1
         for tweet in user_tweets:
@@ -118,6 +118,11 @@ def grab_tweets(api, max_id=None):
                 source_tweets.append(tweet.text)
     else:
         pass
+    #uncomment these lines to just make some training data for the NLP stuff
+    training = open('training.txt', 'a', encoding='utf-8')
+    for item in source_tweets:
+        s = item + '\n'
+        training.write(s)
     return source_tweets, max_id
 
 def grab_toots(api, account_id=None,max_id=None):
@@ -144,14 +149,15 @@ if __name__ == "__main__":
         print(str(guess) + " No, sorry, not this time.")  # message if the random number fails.
         sys.exit()
     else:
-        api = connect()
+        #comment this if building results to "fix", do this if you don't wanna get ratelimited
+        #api = connect()
         source_statuses = []
         if STATIC_TEST:
             file = TEST_SOURCE
             print(">>> Generating from {0}".format(file))
-            string_list = open(file).readlines()
+            string_list = open(file, encoding='utf-8').readlines()
             for item in string_list:
-                source_statuses += item.split(",")
+                source_statuses += item.split("\n")
         if SCRAPE_URL:
             source_statuses += scrape_page(SRC_URL, WEB_CONTEXT, WEB_ATTRIBUTES)
         if ENABLE_TWITTER_SOURCES and TWITTER_SOURCE_ACCOUNTS and len(TWITTER_SOURCE_ACCOUNTS[0]) > 0:
@@ -204,37 +210,50 @@ if __name__ == "__main__":
             mine.add_text(status)
         for x in range(0, 10):
             ebook_status = mine.generate_sentence()
-
+        
+        
+        rando = random.randint(0, 10)
         # if a tweet is very short, this will randomly add a second sentence to it.
-        if ebook_status is not None and len(ebook_status) < 50:
-            rando = random.randint(0, 10)
-            if rando == 0 or rando == 7:
+        if ebook_status is not None and len(ebook_status) < 25:
+            if rando > 4: #half the time, add another sentence, elseif throw it out, and generate new sentence
                 print("Short tweet. Adding another sentence randomly")
                 newer_status = mine.generate_sentence()
                 if newer_status is not None:
-                    ebook_status += " " + mine.generate_sentence()
+                    ebook_status += " " + newer_status
                 else:
-                    ebook_status = ebook_status
-            elif rando == 1:
+                    ebook_status = mine.generate_sentence()
+            #elif rando == 1:
                 # say something crazy/prophetic in all caps
-                print("ALL THE THINGS")
-                ebook_status = ebook_status.upper()
-
+                #print("ALL THE THINGS")
+                #ebook_status = ebook_status.upper()
+        
         # throw out tweets that match anything from the source account.
         if ebook_status is not None and len(ebook_status) < 210:
             for status in source_statuses:
                 if ebook_status[:-1] not in status:
                     continue
                 else:
-                    print("TOO SIMILAR: " + ebook_status)
-                    sys.exit()
-
+                    #comment these and uncomment the resulting stuff to be used later
+                    #print("TOO SIMILAR: " + ebook_status)
+                    #sys.exit()
+                    continue 
+        else:
+            #refactor above logic into a function we can call until we have a status of an "acceptable" length. 
+            #some tweets will be short, but hopefully some NLP can help fix that later
+            #now, this particular account is about a CEO Husky from the moon. 
+        #we should actually caps ANY random tweet, not just ones.
+        #consider stripping punctuation here. 
+        if ebook_status is not None and rando == 1:
+            print("ALL THE THINGS!!!!")
+            ebook_status = ebook_status.upper()
             if not DEBUG:
                 if ENABLE_TWITTER_POSTING:
                     status = api.PostUpdate(ebook_status)
                 if ENABLE_MASTODON_POSTING:
                     status = mastoapi.toot(ebook_status)
-            print(ebook_status)
+            results = open('results.txt', 'a', encoding='utf-8')
+            results.write(ebook_status + "\n")
+            #print(ebook_status)
 
         elif not ebook_status:
             print("Status is empty, sorry.")

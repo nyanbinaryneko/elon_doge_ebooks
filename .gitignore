@@ -1,3 +1,5 @@
 /doge
 /__pycache__
 .env
+results.txt
+training.txt

@@ -5,8 +5,8 @@ import os
 from dotenv import load_dotenv, find_dotenv
 # Configuration for Twitter API
 is_production = os.environ.get('IS_HEROKU', None)
-ENABLE_TWITTER_SOURCES = True # Fetch twitter statuses as source
-ENABLE_TWITTER_POSTING = True # Tweet resulting status?
+ENABLE_TWITTER_SOURCES = False # Fetch twitter statuses as source
+ENABLE_TWITTER_POSTING = False # Tweet resulting status?
 if is_production:
     MY_CONSUMER_KEY = os.environ['MY_CONSUMER_KEY']
     MY_CONSUMER_SECRET = os.environ['MY_CONSUMER_SECRET']
@@ -33,8 +33,8 @@ SOURCE_ACCOUNTS = ["boredelonmusk", "tesla", "spacex", "elonmusk", "dogecoin", "
 TWITTER_SOURCE_ACCOUNTS = ["boredelonmusk", "tesla", "spacex", "elonmusk", "dogecoin", "dog_feelings", "SICKOFWOLVES", "cleantechnica"]  # A list of comma-separated, quote-enclosed Twitter handles of account that you'll generate tweets based on. It should look like ["account1", "account2"]. If you want just one account, no comma needed.
 MASTODON_SOURCE_ACCOUNTS = [""] # A list, e.g. ["@user@instance.tld"]
 SOURCE_EXCLUDE = r'^$'  # Source tweets that match this regexp will not be added to the Markov chain. You might want to filter out inappropriate words for example.
-STATIC_TEST = False  # Set this to True if you want to test Markov generation from a static file instead of the API.
-TEST_SOURCE = ".txt"  # The name of a text file of a string-ified list for testing. To avoid unnecessarily hitting Twitter API. You can use the included testcorpus.txt, if needed.
+STATIC_TEST = True  # Set this to True if you want to test Markov generation from a static file instead of the API.
+TEST_SOURCE = "training.txt"  # The name of a text file of a string-ified list for testing. To avoid unnecessarily hitting Twitter API. You can use the included testcorpus.txt, if needed.
 SCRAPE_URL = False  # Set this to true to scrape a webpage.
 SRC_URL = ['http://www.example.com/one', 'https://www.example.com/two']  # A comma-separated list of URLs to scrape
 WEB_CONTEXT = ['span', 'h2']  # A comma-separated list of the tag or object to search for in each page above.
